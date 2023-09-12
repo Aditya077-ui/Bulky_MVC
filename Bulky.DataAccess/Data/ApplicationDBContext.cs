@@ -1,7 +1,9 @@
-﻿using BulkyWeb.Models;
+﻿
+using Bulky.Models;
+
 using Microsoft.EntityFrameworkCore;
 
-namespace BulkyWeb.Data
+namespace Bulky.DataAccess.Data
 {
     public class ApplicationDBContext : DbContext   //a key component that represents the database session
                                                     //and allows you to interact with the database.
