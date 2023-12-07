@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bulky.DataAccess.Repository
 {
-    internal class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDBContext _db;
         internal DbSet<T> DbSet;
@@ -19,23 +19,40 @@ namespace Bulky.DataAccess.Repository
             
             _db = db;
             this.DbSet = _db.Set<T>();
+            _db.Products.Include(u => u.Category).Include(u=>u.CategoryId);   //displaying category in products table
         }
         void IRepository<T>.Add(T entity)
         {
            DbSet.Add(entity);
         }
 
-        T IRepository<T>.Get(Expression<Func<T, bool>> Filter)
+        T IRepository<T>.Get(Expression<Func<T, bool>> Filter, string? includeProperties = null)
         {
             IQueryable<T> query = DbSet;
             query = query.Where(Filter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
             return query.FirstOrDefault();
         }
 
-        IEnumerable<T> IRepository<T>.GetAll()
+        IEnumerable<T> IRepository<T>.GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = DbSet;
-            return query.ToList();
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach(var includeProp in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+                return query.ToList();
         }
 
         void IRepository<T>.Remove(T entity)
