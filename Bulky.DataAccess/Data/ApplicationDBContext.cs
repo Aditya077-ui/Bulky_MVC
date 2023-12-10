@@ -17,7 +17,8 @@ namespace Bulky.DataAccess.Data
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)       //seed category table
         {
             base.OnModelCreating(modelBuilder);
@@ -41,6 +42,43 @@ namespace Bulky.DataAccess.Data
                     Id = 3,
                     Name = "Historic",
                     DisplayOrder = 3
+
+                }
+
+                );
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company
+                {
+                    Id = 1,
+                    Name = "Tech Solution",
+                    StreetAddress="123 Tech St",
+                    City="Tech City",
+                    State="Virginia",
+                    PostalCode="12211",
+                    PhoneNumber="98439984092"
+
+                },
+                new Company
+                {
+                    Id = 2,
+                    Name = "Spark Solution",
+                    StreetAddress = "123 Spark St",
+                    City = "Spark City",
+                    State="Texas",
+                    PostalCode = "909090",
+                    PhoneNumber = "87586598984"
+
+                },
+                new Company
+                {
+                    Id =3,
+                    Name = "Rigo Solution",
+                    StreetAddress = "123 Rigo St",
+                    City = "Rigo City",
+                    State="New York",
+                    PostalCode = "8788787",
+                    PhoneNumber = "123123123"
 
                 }
 
