@@ -1,1 +1,2 @@
-# Bulky_MVC using .NET CORE MVC 
+“Developed a Bulky Web-Book web app using MVC in ASP.NET Core”
+
