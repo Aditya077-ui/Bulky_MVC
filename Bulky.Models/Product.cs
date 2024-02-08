@@ -30,17 +30,17 @@ namespace Bulky.Models
         [Required]
         [Range(1,1000)]
         [Display(Name ="Price for 1-50")]            //for quantity
-        public double? Price { get; set;}
+        public double Price { get; set;}
 
         [Required]
         [Range(1, 1000)]
         [Display(Name = "Price for 50+")]
-        public double? Price50 { get; set; }
+        public double Price50 { get; set; }
 
         [Required]
         [Range(1, 1000)]
         [Display(Name = "Price for 100+")]
-        public double? Price100 { get; set; }
+        public double Price100 { get; set; }
 
         public int CategoryId { get; set; }            //foreign key to the category table
 
