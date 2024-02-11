@@ -37,23 +37,23 @@
     <div class="card-body p-4">
         <div class="d-flex justify-content-between pb-5 pt-2">
             <span></span>
-            <ul class="list-group list-group-horizontal-sm">
-                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="inprocess">
-                    <li class="List-group-item" @inprocess>In process</li>
-                </a> 
-                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="pending">
-                    <li class="List-group-item" @pending>Payment Pending</li>
-                </a>
-                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="completed">
-                <li class="List-group-item" @completed>Completed</li>
-                </a>
-                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="approved">
-                <li class="List-group-item" @approved>Approved</li>
-                </a>
-                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="all">
-                <li class="List-group-item" @all>All</li>
-                </a>
-            </ul>
+           <ul class="list-group list-group-horizontal-sm">
+    <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="inprocess">
+        <div class="status-rectangle @inprocess">In process</div>
+    </a>
+    <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="pending">
+        <div class="status-rectangle @pending">Payment Pending</div>
+    </a>
+    <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="completed">
+        <div class="status-rectangle @completed">Completed</div>
+    </a>
+    <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="approved">
+        <div class="status-rectangle @approved">Approved</div>
+    </a>
+    <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="all">
+        <div class="status-rectangle @all">All</div>
+    </a>
+</ul>
         </div>
         <table id="tblOrderData" class=" table table-bordered table-striped" style="width:100%">
             <thead>
@@ -70,6 +70,33 @@
         </table>
     </div>
 </div>
+<style>
+    .list-group-horizontal-sm {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .status-rectangle {
+        display: inline-block;
+        padding: 5px 10px;
+        margin-right: 10px;
+        border-radius: 5px;
+        cursor: pointer; /* Add this if you want a pointer cursor on hover */
+    }
+
+        /* Styles for each specific status */
+        .status-rectangle.text-primary {
+            background-color: #3498db;
+            color: #ffffff;
+        }
+
+        .status-rectangle.active.text-white.bg-primary {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+</style>
 
 @section Scripts{
     <script src="~/js/order.js"></script>
